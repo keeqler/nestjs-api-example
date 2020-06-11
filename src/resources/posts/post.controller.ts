@@ -1,9 +1,10 @@
-import { Controller, Body, Headers, Res, Post } from '@nestjs/common';
+import { Controller, Body, Headers, Res, Post, Get, Query } from '@nestjs/common';
 import { Response } from 'express';
 
 import { AuthorService } from '~/resources/authors/author.service';
 
 import { CreatePostHeadersDto, CreatePostBodyDto } from './dto/create-post.dto';
+import { FindPostsQueryDto } from './dto/find-posts.dto';
 
 import { PostService } from './post.service';
 
@@ -29,5 +30,12 @@ export class PostController {
     await this.postService.createPost({ authorId: author.id, title, text });
 
     return response.sendStatus(201);
+  }
+
+  @Get()
+  async listPosts(@Query() query: FindPostsQueryDto, @Res() response: Response): Promise<Response> {
+    const { posts, count } = await this.postService.findPosts(query.page);
+
+    return response.header('X-Total-Count', count.toString()).send(posts);
   }
 }

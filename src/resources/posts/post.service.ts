@@ -5,7 +5,7 @@ import { RepositoryService } from '~/repository/repository.service';
 
 import { Post } from '~/database/entities/post.entity';
 
-import { CreatePostData } from './post.interface';
+import { CreatePostData, FindPostsWhere, FindPostsResult } from './post.interface';
 
 @Injectable()
 export class PostService {
@@ -19,5 +19,15 @@ export class PostService {
     const post = this.postRepository.create(data);
 
     return await this.postRepository.save(post);
+  }
+
+  public async findPosts(page: number, where: FindPostsWhere = {}): Promise<FindPostsResult> {
+    const [posts, count] = await this.postRepository.findAndCount({
+      where,
+      take: 10,
+      skip: (page - 1) * 10,
+    });
+
+    return { posts, count };
   }
 }
