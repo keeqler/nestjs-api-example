@@ -1,18 +1,22 @@
-import { Controller, Body, Headers, Res, Post, Get, Query } from '@nestjs/common';
-import { Response } from 'express';
+import { Controller, Body, Headers, Res, Post, Get, Query, Param } from '@nestjs/common';
+import { Response, response } from 'express';
 
 import { AuthorService } from '~/resources/authors/author.service';
 
 import { CreatePostHeadersDto, CreatePostBodyDto } from './dto/create-post.dto';
 import { FindPostsQueryDto } from './dto/find-posts.dto';
+import {
+  ListPostsByAuthorParamsDto,
+  ListPostsByAuthorQueryDto,
+} from './dto/list-posts-by-author.dto';
 
 import { PostService } from './post.service';
 
-@Controller('posts')
+@Controller('authors')
 export class PostController {
   constructor(private authorService: AuthorService, private postService: PostService) {}
 
-  @Post()
+  @Post('/posts')
   async createPost(
     @Headers() headers: CreatePostHeadersDto,
     @Body() body: CreatePostBodyDto,
@@ -32,9 +36,22 @@ export class PostController {
     return response.sendStatus(201);
   }
 
-  @Get()
+  @Get('/posts')
   async listPosts(@Query() query: FindPostsQueryDto, @Res() response: Response): Promise<Response> {
     const { posts, count } = await this.postService.findPosts(query.page);
+
+    return response.header('X-Total-Count', count.toString()).send(posts);
+  }
+
+  @Get(':authorId/posts')
+  async listPostsByAuthor(
+    @Param() params: ListPostsByAuthorParamsDto,
+    @Query() query: ListPostsByAuthorQueryDto,
+    @Res() response: Response
+  ): Promise<Response> {
+    const { posts, count } = await this.postService.findPosts(query.page, {
+      authorId: params.authorId,
+    });
 
     return response.header('X-Total-Count', count.toString()).send(posts);
   }
