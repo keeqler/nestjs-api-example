@@ -3,6 +3,6 @@ export interface CreateAuthorData {
 }
 
 export interface FindAuthorData {
-  id: number;
-  name: string;
+  id?: number;
+  name?: string;
 }
