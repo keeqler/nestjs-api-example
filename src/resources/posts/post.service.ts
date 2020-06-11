@@ -30,4 +30,8 @@ export class PostService {
 
     return { posts, count };
   }
+
+  public async findPost(id: number): Promise<Post> {
+    return await this.postRepository.findOne(id);
+  }
 }

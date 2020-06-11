@@ -14,3 +14,8 @@ export interface FindPostsResult {
   posts: Post[];
   count: number;
 }
+
+export interface FindPostInput {
+  id?: number;
+  authorId?: number;
+}

@@ -1,5 +1,5 @@
 import { Controller, Body, Headers, Res, Post, Get, Query, Param } from '@nestjs/common';
-import { Response, response } from 'express';
+import { Response } from 'express';
 
 import { AuthorService } from '~/resources/authors/author.service';
 
@@ -11,6 +11,7 @@ import {
 } from './dto/list-posts-by-author.dto';
 
 import { PostService } from './post.service';
+import { GetPostQueryDto } from './dto/get-post.dto';
 
 @Controller('authors')
 export class PostController {
@@ -54,5 +55,12 @@ export class PostController {
     });
 
     return response.header('X-Total-Count', count.toString()).send(posts);
+  }
+
+  @Get('/posts/:id')
+  async getPost(@Param() params: GetPostQueryDto, @Res() response: Response): Promise<Response> {
+    const post = await this.postService.findPost(params.id);
+
+    return response.send(post);
   }
 }
