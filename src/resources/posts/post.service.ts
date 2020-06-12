@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Repository, DeepPartial } from 'typeorm';
+import { Repository, DeepPartial, DeleteResult } from 'typeorm';
 
 import { RepositoryService } from '~/repository/repository.service';
 
@@ -39,5 +39,9 @@ export class PostService {
     const post = this.postRepository.merge(entityInstance, data);
 
     return await this.postRepository.save(post);
+  }
+
+  public async deletePost(id: number): Promise<DeleteResult> {
+    return await this.postRepository.delete(id);
   }
 }
