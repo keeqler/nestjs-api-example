@@ -3,7 +3,7 @@ import { Repository, DeepPartial } from 'typeorm';
 
 import { RepositoryService } from '~/repository/repository.service';
 
-import { Post } from '~/database/entities/post.entity';
+import { Post } from './posts.entity';
 
 @Injectable()
 export class PostService {

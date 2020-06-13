@@ -13,7 +13,7 @@ import {
 import { Response } from 'express';
 import * as _ from 'lodash';
 
-import { AuthorService } from '~/resources/authors/author.service';
+import { AuthorService } from '~/resources/authors/authors.service';
 
 import { CreatePostHeadersDto, CreatePostBodyDto } from './dto/create-post.dto';
 import { ListPostsQueryDto } from './dto/list-posts.dto';
@@ -29,7 +29,7 @@ import {
 } from './dto/update-post.dto';
 import { DeletePostParamsDto, DeletePostHeadersDto } from './dto/delete-post.dto';
 
-import { PostService } from './post.service';
+import { PostService } from './posts.service';
 
 @Controller('authors')
 export class PostController {

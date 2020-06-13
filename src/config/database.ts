@@ -3,9 +3,9 @@ import { SqliteConnectionOptions } from 'typeorm/driver/sqlite/SqliteConnectionO
 
 export const sqliteOptions: SqliteConnectionOptions = {
   type: 'sqlite',
-  database: resolve(__dirname, '..', 'database', 'database.sqlite'),
-  entities: [resolve(__dirname, '..', 'database', 'entities', '*')],
-  migrations: [resolve(__dirname, '..', 'database', 'migrations', '*')],
-  subscribers: [resolve(__dirname, '..', 'database', 'subscribers', '*')],
+  database: resolve(__dirname, '..', 'tmp', 'database.sqlite'),
+  entities: [resolve(__dirname, '..', 'resources', '*', '*.entity.{ts,js}')],
+  migrations: [resolve(__dirname, '..', 'repository', 'migrations', '*')],
+  subscribers: [resolve(__dirname, '..', 'repository', 'subscribers', '*')],
   synchronize: false,
 };

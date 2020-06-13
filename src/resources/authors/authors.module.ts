@@ -2,8 +2,8 @@ import { Module } from '@nestjs/common';
 
 import { DatabaseModule } from '~/repository/repository.module';
 
-import { AuthorController } from './author.controller';
-import { AuthorService } from './author.service';
+import { AuthorController } from './authors.controller';
+import { AuthorService } from './authors.service';
 
 @Module({
   imports: [DatabaseModule],

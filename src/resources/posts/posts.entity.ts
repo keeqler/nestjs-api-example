@@ -5,10 +5,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  JoinColumn,
 } from 'typeorm';
 
-import { Author } from './author.entity';
+import { Author } from '~/resources/authors/authors.entity';
 
 @Entity('posts')
 export class Post {

@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Post } from './post.entity';
+import { Post } from '~/resources/posts/posts.entity';
 
 @Entity('authors')
 export class Author {

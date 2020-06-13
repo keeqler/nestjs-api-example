@@ -3,8 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { RepositoryService } from './repository.service';
 
-import { Author } from '~/database/entities/author.entity';
-import { Post } from '~/database/entities/post.entity';
+import { Author } from '~/resources/authors/authors.entity';
+import { Post } from '~/resources/posts/posts.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Author, Post])],

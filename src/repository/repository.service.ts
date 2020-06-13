@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Author } from '~/database/entities/author.entity';
-import { Post } from '~/database/entities/post.entity';
+import { Author } from '~/resources/authors/authors.entity';
+import { Post } from '~/resources/posts/posts.entity';
 
 @Injectable()
 export class RepositoryService {

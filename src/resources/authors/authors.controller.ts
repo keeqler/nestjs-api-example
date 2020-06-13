@@ -3,7 +3,7 @@ import { Response } from 'express';
 
 import { CreateAuthorBodyDto } from './dto/create-author.dto';
 
-import { AuthorService } from './author.service';
+import { AuthorService } from './authors.service';
 
 @Controller('authors')
 export class AuthorController {
